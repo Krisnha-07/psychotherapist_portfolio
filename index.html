@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>De Limit Performance Pvt. Ltd. | Physiotherapy & Sports Injury Center</title>
+  <meta name="description" content="De Limit Performance — Premier physiotherapy and sports injury rehabilitation center. Push beyond your limits." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #080A0C;
+      --dark: #0E1114;
+      --card: #13171C;
+      --border: rgba(255,255,255,0.07);
+      --white: #F4F5F0;
+      --off-white: #C8CABC;
+      --accent: #C8F000;
+      --accent2: #00D4FF;
+      --red: #FF3B30;
+      --muted: rgba(200,202,188,0.45);
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-cond: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 400;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ─── CUSTOM CURSOR ─── */
+    .cursor {
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width .2s, height .2s, opacity .2s;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%);
+      opacity: .5;
+      transition: transform .12s ease-out, width .2s, height .2s;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw;
+      height: 72px;
+      background: rgba(8,10,12,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: background .3s;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 40px; height: 40px;
+      background: var(--accent);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-mark span {
+      font-family: var(--font-display);
+      font-size: 16px; color: var(--black); letter-spacing: 0;
+    }
+    .logo-text { line-height: 1.1; }
+    .logo-text .brand {
+      font-family: var(--font-display);
+      font-size: 20px; color: var(--white);
+      letter-spacing: 2px;
+    }
+    .logo-text .sub {
+      font-family: var(--font-cond);
+      font-size: 10px; color: var(--accent);
+      letter-spacing: 3px; text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-cond);
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--off-white); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: var(--black) !important;
+      padding: 8px 20px;
+      font-family: var(--font-cond) !important;
+      font-size: 13px !important; font-weight: 700 !important;
+      letter-spacing: 2px !important;
+      text-transform: uppercase !important;
+      text-decoration: none !important;
+      transition: background .2s, color .2s !important;
+    }
+    .nav-cta:hover { background: var(--white) !important; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2px;
+      background: var(--white); transition: .3s;
+    }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: var(--black);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 36px; letter-spacing: 3px;
+      color: var(--white); text-decoration: none;
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: flex-end;
+      padding: 0 5vw 8vh;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(160deg, rgba(200,240,0,0.06) 0%, transparent 50%),
+        linear-gradient(to bottom, transparent 40%, rgba(8,10,12,0.9) 100%),
+        url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=80&fit=crop') center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(8,10,12,0.55);
+    }
+    .hero-noise {
+      position: absolute; inset: 0; z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: .4;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 900px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-cond);
+      font-size: 12px; font-weight: 600; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 32px; height: 1px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(64px, 10vw, 130px);
+      line-height: .92;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .hero-title .accent-line { color: var(--accent); display: block; }
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: clamp(15px, 1.6vw, 18px);
+      font-weight: 300;
+      color: var(--off-white);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--black);
+      font-family: var(--font-cond);
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 36px;
+      display: inline-block;
+      transition: background .2s, transform .2s;
+    }
+    .btn-primary:hover { background: var(--white); transform: translateY(-2px); }
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-family: var(--font-cond);
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 36px;
+      display: inline-block;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats {
+      position: absolute; right: 5vw; bottom: 8vh; z-index: 2;
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .stat-item { text-align: right; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 44px; color: var(--accent); line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--font-cond);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-wrap {
+      background: var(--accent);
+      overflow: hidden; white-space: nowrap;
+      padding: 12px 0;
+    }
+    .marquee-track {
+      display: inline-flex; gap: 0;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-track span {
+      font-family: var(--font-display);
+      font-size: 14px; letter-spacing: 3px;
+      color: var(--black);
+      padding: 0 28px;
+    }
+    .marquee-track span.dot { padding: 0 10px; opacity: .5; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ─── SECTION BASICS ─── */
+    section { padding: 100px 5vw; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-cond);
+      font-size: 11px; font-weight: 700; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .section-label::before {
+      content: ''; width: 24px; height: 1px; background: var(--accent);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.5vw, 72px);
+      line-height: .95; letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+    .section-body {
+      font-size: 16px; font-weight: 300;
+      color: var(--off-white); line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-wrap img {
+      width: 100%; aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+    .about-badge {
+      position: absolute; bottom: -24px; right: -24px;
+      background: var(--accent);
+      width: 140px; height: 140px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    }
+    .about-badge .num {
+      font-family: var(--font-display);
+      font-size: 36px; color: var(--black); line-height: 1;
+    }
+    .about-badge .txt {
+      font-family: var(--font-cond);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--black);
+    }
+    .about-features { margin-top: 2.5rem; display: flex; flex-direction: column; gap: .8rem; }
+    .feat-item {
+      display: flex; align-items: center; gap: 14px;
+      font-family: var(--font-cond);
+      font-size: 15px; font-weight: 500;
+      letter-spacing: 1px; color: var(--white);
+    }
+    .feat-item::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ─── SERVICES ─── */
+    .services-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 60px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .service-card {
+      background: var(--card);
+      padding: 44px 36px;
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: border-color .3s;
+      cursor: pointer;
+    }
+    .service-card:hover { border-color: var(--accent); }
+    .service-card:hover .svc-num { opacity: 1; }
+    .service-card:hover .svc-arrow { transform: translateX(6px); }
+    .svc-num {
+      font-family: var(--font-display);
+      font-size: 60px; color: rgba(200,240,0,0.06);
+      position: absolute; top: 16px; right: 20px;
+      line-height: 1;
+      transition: opacity .3s;
+      opacity: 1;
+    }
+    .svc-icon {
+      width: 48px; height: 48px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 22px;
+    }
+    .svc-title {
+      font-family: var(--font-cond);
+      font-size: 22px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: .8rem; color: var(--white);
+    }
+    .svc-desc {
+      font-size: 14px; font-weight: 300;
+      color: var(--off-white); line-height: 1.7;
+    }
+    .svc-arrow {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-family: var(--font-cond);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent);
+      transition: transform .2s;
+    }
+
+    /* ─── PROCESS ─── */
+    .process-section {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 60px;
+    }
+    .process-step {
+      padding: 40px 32px;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .process-step:last-child { border-right: none; }
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 64px; color: rgba(200,240,0,0.08);
+      line-height: 1; margin-bottom: .5rem;
+    }
+    .step-title {
+      font-family: var(--font-cond);
+      font-size: 20px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--white); margin-bottom: .8rem;
+    }
+    .step-desc {
+      font-size: 14px; font-weight: 300;
+      color: var(--off-white); line-height: 1.7;
+    }
+    .step-bar {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: transparent;
+      transition: background .3s;
+    }
+    .process-step:hover .step-bar { background: var(--accent); }
+
+    /* ─── CONDITIONS ─── */
+    .conditions-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 60px;
+    }
+    .condition-tag {
+      border: 1px solid var(--border);
+      padding: 20px;
+      display: flex; align-items: center; gap: 12px;
+      transition: border-color .2s, background .2s;
+      cursor: pointer;
+    }
+    .condition-tag:hover {
+      border-color: var(--accent);
+      background: rgba(200,240,0,0.04);
+    }
+    .condition-tag .icon { font-size: 20px; flex-shrink: 0; }
+    .condition-tag .name {
+      font-family: var(--font-cond);
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials-section {
+      background: var(--dark);
+    }
+    .testimonials-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 60px;
+    }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      position: relative;
+    }
+    .quote-mark {
+      font-family: var(--font-display);
+      font-size: 80px; color: var(--accent);
+      line-height: .6; margin-bottom: 1.5rem;
+      opacity: .5;
+    }
+    .testimonial-text {
+      font-size: 15px; font-weight: 300;
+      color: var(--off-white); line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-stars { color: var(--accent); letter-spacing: 2px; font-size: 13px; margin-bottom: 1rem; }
+    .testimonial-author {
+      font-family: var(--font-cond);
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--white);
+    }
+    .testimonial-role {
+      font-size: 12px; color: var(--muted);
+      font-family: var(--font-cond);
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    /* ─── TEAM ─── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+    }
+    .team-card {
+      position: relative; overflow: hidden;
+      cursor: pointer;
+    }
+    .team-card img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; display: block;
+      transition: transform .5s;
+      filter: grayscale(40%);
+    }
+    .team-card:hover img { transform: scale(1.05); filter: grayscale(0%); }
+    .team-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,10,12,0.9) 0%, transparent 50%);
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+    }
+    .team-name {
+      font-family: var(--font-cond);
+      font-size: 20px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--white);
+    }
+    .team-role {
+      font-size: 12px; color: var(--accent);
+      font-family: var(--font-cond);
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    .team-tag {
+      display: inline-block;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: var(--font-cond);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 3px 8px;
+      margin-top: .5rem;
+    }
+
+    /* ─── CTA STRIP ─── */
+    .cta-strip {
+      background: var(--accent);
+      padding: 80px 5vw;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap; gap: 2rem;
+    }
+    .cta-strip-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 60px);
+      color: var(--black); line-height: .95;
+    }
+    .btn-dark {
+      background: var(--black);
+      color: var(--accent);
+      font-family: var(--font-cond);
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 40px;
+      display: inline-block;
+      transition: background .2s;
+    }
+    .btn-dark:hover { background: var(--dark); }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info { padding-top: 20px; }
+    .contact-item {
+      display: flex; gap: 16px;
+      margin-bottom: 2rem;
+    }
+    .contact-icon {
+      width: 44px; height: 44px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .contact-detail-label {
+      font-family: var(--font-cond);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .3rem;
+    }
+    .contact-detail-val {
+      font-size: 15px; color: var(--white); font-weight: 300;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field label {
+      display: block;
+      font-family: var(--font-cond);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 8px;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 15px; font-weight: 300;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color .2s;
+      resize: none;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus { border-color: var(--accent); }
+    .field input::placeholder,
+    .field textarea::placeholder { color: var(--muted); }
+    .field select option { background: var(--card); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      padding: 60px 5vw 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    .footer-brand .tagline {
+      font-size: 14px; font-weight: 300;
+      color: var(--muted); line-height: 1.7;
+      margin-top: 1rem; margin-bottom: 1.5rem;
+    }
+    .social-links { display: flex; gap: 10px; }
+    .social-link {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--white);
+      text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+    .social-link:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-col-title {
+      font-family: var(--font-cond);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .footer-links a {
+      font-size: 14px; font-weight: 300;
+      color: var(--muted); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex; justify-content: space-between;
+      align-items: center;
+      font-size: 12px; color: var(--muted);
+      font-family: var(--font-cond);
+      letter-spacing: 1px;
+    }
+    .footer-bottom span span { color: var(--accent); }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0; transform: translateX(-40px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    /* ─── PILL BADGE ─── */
+    .pill {
+      display: inline-block;
+      background: rgba(200,240,0,0.1);
+      border: 1px solid rgba(200,240,0,0.25);
+      color: var(--accent);
+      font-family: var(--font-cond);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      padding: 4px 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── DIVIDER ─── */
+    hr.div { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ─── SCROLL INDICATOR ─── */
+    .scroll-hint {
+      position: absolute; bottom: 3vh; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 6px;
+    }
+    .scroll-hint span {
+      font-family: var(--font-cond);
+      font-size: 10px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: .5; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .conditions-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-step:nth-child(2) { border-right: none; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-stats { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-badge { bottom: -16px; right: -8px; width: 100px; height: 100px; }
+      .about-badge .num { font-size: 26px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .conditions-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .services-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .testimonials-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .cta-strip { flex-direction: column; }
+      section { padding: 70px 5vw; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">
+    <div class="logo-mark"><span>DL</span></div>
+    <div class="logo-text">
+      <div class="brand">DE LIMIT</div>
+      <div class="sub">Performance Pvt. Ltd.</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#conditions">Conditions</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#testimonials">Stories</a></li>
+    <li><a href="#contact" class="nav-cta">Book Session</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#conditions" onclick="closeMobile()">Conditions</a>
+  <a href="#team" onclick="closeMobile()">Team</a>
+  <a href="#testimonials" onclick="closeMobile()">Stories</a>
+  <a href="#contact" onclick="closeMobile()">Book Session</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-content reveal">
+    <div class="hero-eyebrow">Physiotherapy & Sports Injury Center</div>
+    <h1 class="hero-title">
+      PUSH<br>
+      <span class="accent-line">BEYOND</span>
+      YOUR LIMIT
+    </h1>
+    <p class="hero-subtitle">
+      Expert-led rehabilitation, sports injury recovery, and performance optimization — built for athletes who refuse to settle.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book Assessment</a>
+      <a href="#services" class="btn-ghost">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Athletes Treated</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">95%</div>
+      <div class="stat-label">Recovery Rate</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">8+</div>
+      <div class="stat-label">Years of Excellence</div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Sports Injury Rehab</span><span class="dot">◆</span>
+    <span>Manual Therapy</span><span class="dot">◆</span>
+    <span>Biomechanical Assessment</span><span class="dot">◆</span>
+    <span>Dry Needling</span><span class="dot">◆</span>
+    <span>Strength & Conditioning</span><span class="dot">◆</span>
+    <span>Return to Sport</span><span class="dot">◆</span>
+    <span>Pain Management</span><span class="dot">◆</span>
+    <span>Performance Optimization</span><span class="dot">◆</span>
+    <span>Sports Injury Rehab</span><span class="dot">◆</span>
+    <span>Manual Therapy</span><span class="dot">◆</span>
+    <span>Biomechanical Assessment</span><span class="dot">◆</span>
+    <span>Dry Needling</span><span class="dot">◆</span>
+    <span>Strength & Conditioning</span><span class="dot">◆</span>
+    <span>Return to Sport</span><span class="dot">◆</span>
+    <span>Pain Management</span><span class="dot">◆</span>
+    <span>Performance Optimization</span><span class="dot">◆</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap reveal-left">
+      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80&fit=crop" alt="De Limit Performance Clinic" />
+      <div class="about-badge">
+        <div class="num">8+</div>
+        <div class="txt">Years</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">WHERE LIMITS ARE<br>MEANT TO<br><span style="color:var(--accent)">BE BROKEN</span></h2>
+      <p class="section-body">
+        De Limit Performance Pvt. Ltd. is Jamshedpur's premier physiotherapy and sports injury center. We combine clinical expertise with cutting-edge sports science to accelerate recovery, prevent re-injury, and unlock your peak physical potential.
+      </p>
+      <div class="about-features">
+        <div class="feat-item">Evidence-based physiotherapy protocols</div>
+        <div class="feat-item">Individualized treatment plans for every athlete</div>
+        <div class="feat-item">State-of-the-art rehabilitation equipment</div>
+        <div class="feat-item">Multidisciplinary team of certified specialists</div>
+        <div class="feat-item">Comprehensive return-to-sport programs</div>
+        <div class="feat-item">Preventive care & performance optimization</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title reveal">SPECIALIZED<br>SERVICES</h2>
+    </div>
+    <a href="#contact" class="btn-ghost reveal">Get Started →</a>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="svc-num">01</div>
+      <div class="svc-icon">🏃</div>
+      <div class="svc-title">Sports Injury Rehabilitation</div>
+      <p class="svc-desc">Comprehensive recovery programs for acute and chronic sports injuries. From diagnosis to full return-to-sport, we guide every step of your journey.</p>
+      <span class="svc-arrow">Learn more →</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-num">02</div>
+      <div class="svc-icon">🤲</div>
+      <div class="svc-title">Manual Therapy</div>
+      <p class="svc-desc">Hands-on techniques including joint mobilization, soft tissue manipulation, and myofascial release to restore mobility and reduce pain.</p>
+      <span class="svc-arrow">Learn more →</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-num">03</div>
+      <div class="svc-icon">📊</div>
+      <div class="svc-title">Biomechanical Assessment</div>
+      <p class="svc-desc">Advanced movement analysis to identify inefficiencies, compensations, and injury risk factors in your movement patterns.</p>
+      <span class="svc-arrow">Learn more →</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-num">04</div>
+      <div class="svc-icon">💪</div>
+      <div class="svc-title">Strength & Conditioning</div>
+      <p class="svc-desc">Sport-specific strength programs designed to build resilience, improve athletic output, and prevent future injuries.</p>
+      <span class="svc-arrow">Learn more →</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-num">05</div>
+      <div class="svc-icon">🎯</div>
+      <div class="svc-title">Dry Needling & Electrotherapy</div>
+      <p class="svc-desc">Targeted needling for trigger point release combined with ultrasound, TENS, and laser therapy for accelerated tissue healing.</p>
+      <span class="svc-arrow">Learn more →</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-num">06</div>
+      <div class="svc-icon">🔄</div>
+      <div class="svc-title">Post-Surgical Rehab</div>
+      <p class="svc-desc">Structured recovery protocols following orthopaedic surgeries — ACL reconstruction, rotator cuff repair, joint replacements and more.</p>
+      <span class="svc-arrow">Learn more →</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="section-label reveal">Our Approach</div>
+  <h2 class="section-title reveal">THE DE LIMIT<br>METHOD</h2>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="step-bar"></div>
+      <div class="step-num">01</div>
+      <div class="step-title">Comprehensive Assessment</div>
+      <p class="step-desc">We begin with a thorough physical, functional, and biomechanical evaluation to understand your condition at its root.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-bar"></div>
+      <div class="step-num">02</div>
+      <div class="step-title">Precision Diagnosis</div>
+      <p class="step-desc">Using evidence-based clinical testing and movement screening to establish an accurate diagnosis and prognosis.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-bar"></div>
+      <div class="step-num">03</div>
+      <div class="step-title">Individualized Treatment</div>
+      <p class="step-desc">A personalized rehab plan combining manual therapy, exercise, and modalities optimized for your goals and timeline.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-bar"></div>
+      <div class="step-num">04</div>
+      <div class="step-title">Return & Perform</div>
+      <p class="step-desc">Sport-specific progressions, performance benchmarks, and ongoing support to get you back stronger than before.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section id="conditions">
+  <div class="section-label reveal">What We Treat</div>
+  <h2 class="section-title reveal">CONDITIONS<br>WE MANAGE</h2>
+  <p class="section-body reveal" style="margin-bottom:0">From elite athletes to weekend warriors — we treat the full spectrum of musculoskeletal and sports conditions.</p>
+  <div class="conditions-grid">
+    <div class="condition-tag reveal"><span class="icon">🦵</span><span class="name">ACL / PCL Injuries</span></div>
+    <div class="condition-tag reveal"><span class="icon">💪</span><span class="name">Rotator Cuff Tears</span></div>
+    <div class="condition-tag reveal"><span class="icon">🦴</span><span class="name">Stress Fractures</span></div>
+    <div class="condition-tag reveal"><span class="icon">🔵</span><span class="name">Tennis / Golfer's Elbow</span></div>
+    <div class="condition-tag reveal"><span class="icon">🦶</span><span class="name">Plantar Fasciitis</span></div>
+    <div class="condition-tag reveal"><span class="icon">🏃</span><span class="name">Runner's Knee (PFPS)</span></div>
+    <div class="condition-tag reveal"><span class="icon">⚡</span><span class="name">Hamstring Strains</span></div>
+    <div class="condition-tag reveal"><span class="icon">🔺</span><span class="name">Ankle Sprains</span></div>
+    <div class="condition-tag reveal"><span class="icon">🔙</span><span class="name">Low Back Pain</span></div>
+    <div class="condition-tag reveal"><span class="icon">🎽</span><span class="name">Shoulder Impingement</span></div>
+    <div class="condition-tag reveal"><span class="icon">🩺</span><span class="name">Cervical Spondylosis</span></div>
+    <div class="condition-tag reveal"><span class="icon">🏋️</span><span class="name">Hip Flexor Injuries</span></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-header">
+    <div>
+      <div class="section-label reveal">Patient Stories</div>
+      <h2 class="section-title reveal">BUILT ON<br>REAL RESULTS</h2>
+    </div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">After my ACL reconstruction, I didn't think I'd play competitive football again. The team at De Limit had me back on the pitch in 9 months — stronger and more explosive than before.</p>
+      <div class="testimonial-author">Rohit Sharma</div>
+      <div class="testimonial-role">Football Athlete · Jamshedpur FC Academy</div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">Three years of chronic back pain resolved in 8 sessions. The biomechanical analysis pinpointed exactly what was wrong. I wish I'd found De Limit sooner.</p>
+      <div class="testimonial-author">Priya Nair</div>
+      <div class="testimonial-role">Recreational Runner · Marathon Finisher</div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">World-class facility and even better therapists. My shoulder surgery rehab was seamless. Every session was purposeful and I could see measurable progress every week.</p>
+      <div class="testimonial-author">Arjun Mehta</div>
+      <div class="testimonial-role">Cricket Player · State Level</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" style="padding-bottom:0">
+  <div class="section-label reveal">The Specialists</div>
+  <h2 class="section-title reveal">MEET YOUR<br>RECOVERY TEAM</h2>
+  <p class="section-body reveal">Certified physiotherapists and sports science specialists dedicated to your complete recovery and peak performance.</p>
+</section>
+<div class="team-grid">
+  <div class="team-card">
+    <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&fit=crop" alt="Dr. Ananya Singh" />
+    <div class="team-overlay">
+      <div class="team-name">Dr. Ananya Singh</div>
+      <div class="team-role">Head Physiotherapist</div>
+      <span class="team-tag">BPT · MPT Sports</span>
+    </div>
+  </div>
+  <div class="team-card">
+    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80&fit=crop" alt="Dr. Karan Mishra" />
+    <div class="team-overlay">
+      <div class="team-name">Dr. Karan Mishra</div>
+      <div class="team-role">Sports Rehabilitation Specialist</div>
+      <span class="team-tag">MPT Ortho · CSCS</span>
+    </div>
+  </div>
+  <div class="team-card">
+    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80&fit=crop" alt="Dr. Preethi Rao" />
+    <div class="team-overlay">
+      <div class="team-name">Dr. Preethi Rao</div>
+      <div class="team-role">Manual Therapy Expert</div>
+      <span class="team-tag">BPT · Cert. Dry Needling</span>
+    </div>
+  </div>
+  <div class="team-card">
+    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80&fit=crop&crop=face" alt="Amit Tiwari" />
+    <div class="team-overlay">
+      <div class="team-name">Amit Tiwari</div>
+      <div class="team-role">Strength & Conditioning Coach</div>
+      <span class="team-tag">NSCA-CSCS · ACSM</span>
+    </div>
+  </div>
+</div>
+
+<!-- CTA STRIP -->
+<div class="cta-strip reveal">
+  <div>
+    <div class="cta-strip-title">READY TO<br>DE-LIMIT<br>YOURSELF?</div>
+  </div>
+  <div>
+    <p style="font-family:var(--font-body);font-size:16px;color:rgba(0,0,0,0.65);max-width:360px;margin-bottom:2rem;font-weight:300;line-height:1.7;">
+      Book a comprehensive assessment with our specialist team and take the first step toward complete recovery and peak performance.
+    </p>
+    <a href="#contact" class="btn-dark">Book Free Consultation</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+ <a href="https://wa.me/9500001915?text=Hi" target="_blank" class="wcf-btn-default btn-rollover-cross">
+										Chat with our team				</a>
+<section id="contact">
+  <div class="section-label reveal">Get In Touch</div>
+  <h2 class="section-title reveal">BOOK YOUR<br>SESSION</h2>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <p class="section-body" style="margin-bottom:2.5rem">
+        Ready to start your recovery journey? Reach out and one of our specialists will connect with you within 24 hours.
+      </p>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-detail-label">Location</div>
+          <div class="contact-detail-val">Plot No. 12, Bistupur Main Road<br>Jamshedpur, Jharkhand — 831001</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-detail-label">Phone</div>
+          <div class="contact-detail-val">+91 99999 00000</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-detail-label">Email</div>
+          <div class="contact-detail-val">care@delimitperformance.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div class="contact-detail-label">Hours</div>
+          <div class="contact-detail-val">Mon – Sat: 8:00 AM – 8:00 PM<br>Sunday: 9:00 AM – 1:00 PM</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="field">
+            <label>First Name</label>
+            <input type="text" placeholder="Rohit" />
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input type="text" placeholder="Sharma" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label>Phone</label>
+            <input type="tel" placeholder="+91 98765 43210" />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" placeholder="you@email.com" />
+          </div>
+        </div>
+        <div class="field">
+          <label>Service Needed</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>Sports Injury Rehabilitation</option>
+            <option>Manual Therapy</option>
+            <option>Biomechanical Assessment</option>
+            <option>Strength & Conditioning</option>
+            <option>Dry Needling & Electrotherapy</option>
+            <option>Post-Surgical Rehabilitation</option>
+            <option>General Physiotherapy</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tell Us About Your Condition</label>
+          <textarea rows="4" placeholder="Briefly describe your injury, pain, or performance goal..."></textarea>
+        </div>
+        <button type="button" class="btn-primary" onclick="handleSubmit()" style="width:100%;border:none;cursor:pointer;font-size:14px;">
+          Book My Assessment →
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="margin-bottom:.5rem;display:inline-flex">
+        <div class="logo-mark"><span>DL</span></div>
+        <div class="logo-text">
+          <div class="brand">DE LIMIT</div>
+          <div class="sub">Performance Pvt. Ltd.</div>
+        </div>
+      </a>
+      <p class="tagline">Pushing the boundaries of physiotherapy and sports rehabilitation in India. Recover smarter. Perform harder.</p>
+      <div class="social-links">
+        <a class="social-link" href="#" aria-label="Instagram">📸</a>
+        <a class="social-link" href="#" aria-label="Facebook">🔵</a>
+        <a class="social-link" href="#" aria-label="YouTube">▶️</a>
+        <a class="social-link" href="#" aria-label="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Sports Injury Rehab</a></li>
+        <li><a href="#services">Manual Therapy</a></li>
+        <li><a href="#services">Biomechanical Assessment</a></li>
+        <li><a href="#services">Strength & Conditioning</a></li>
+        <li><a href="#services">Dry Needling</a></li>
+        <li><a href="#services">Post-Surgical Rehab</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#conditions">Conditions Treated</a></li>
+        <li><a href="#testimonials">Patient Stories</a></li>
+        <li><a href="#contact">Book Appointment</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="#">Bistupur, Jamshedpur</a></li>
+        <li><a href="tel:+919999900000">+91 99999 00000</a></li>
+        <li><a href="mailto:care@delimitperformance.com">care@delimitperformance.com</a></li>
+        <li><a href="#">Mon–Sat: 8AM–8PM</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 <span>De Limit Performance Pvt. Ltd.</span> All rights reserved.</span>
+    <span>Made with ♥ in Jamshedpur, India</span>
+  </div>
+</footer>
+
+<script>
+  /* ── CURSOR ── */
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+  function animRing() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); }
+  animRing();
+
+  /* ── NAV SCROLL ── */
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.background = window.scrollY > 50 ? 'rgba(8,10,12,0.97)' : 'rgba(8,10,12,0.85)';
+  });
+
+  /* ── HAMBURGER ── */
+  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+
+  /* ── SCROLL REVEAL ── */
+  const reveals = document.querySelectorAll('.reveal, .reveal-left');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => obs.observe(el));
+
+  /* ── STAGGER REVEALS ── */
+  document.querySelectorAll('.services-grid, .conditions-grid, .testimonials-grid, .process-grid, .footer-grid').forEach(grid => {
+    grid.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.08) + 's';
+    });
+  });
+
+  /* ── FORM SUBMIT ── */
+  function handleSubmit() {
+    const btn = document.querySelector('#contact .btn-primary');
+    btn.textContent = '✓ Request Sent! We\'ll call you back.';
+    btn.style.background = 'var(--accent2)';
+    setTimeout(() => { btn.textContent = 'Book My Assessment →'; btn.style.background = ''; }, 4000);
+  }
+
+  /* ── SERVICE CARD HOVER ── */
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mouseenter', () => card.style.background = 'rgba(200,240,0,0.03)');
+    card.addEventListener('mouseleave', () => card.style.background = '');
+  });
+</script>
+</body>
+</html>
